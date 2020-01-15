@@ -7,13 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
-import java.util.Objects;
 
 @Controller
 public class LoginController {
 
-    @Autowired
-    UserService userService;
+    private UserService userService;
 
     @CrossOrigin
     @PostMapping(value = "api/login")
@@ -29,5 +27,11 @@ public class LoginController {
         } else {
             return new Result(200);
         }
+    }
+
+//    set方法注入
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }
