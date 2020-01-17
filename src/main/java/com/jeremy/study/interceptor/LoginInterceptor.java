@@ -17,8 +17,8 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         HttpSession httpSession = request.getSession();
-        String contextPath = "/api";
-//        String contextPath = httpSession.getServletContext().getContextPath();
+        String preUri = request.getRequestURI();
+        String contextPath = StringUtils.substring(preUri, 0, StringUtils.lastIndexOf(preUri,"/"));
         String[] requireAuthPages = new String[]{
                 "index",
         };
